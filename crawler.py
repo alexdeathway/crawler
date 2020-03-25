@@ -55,9 +55,16 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-d","--domain", help="Domain Name; EX: https://test.com")
 parser.add_argument("-l","--level", help="Levels deep to crawl. EX: 2")
 args = parser.parse_args()
-
 if args.domain and args.level:
-	webcrawler = discoveryWebCrawlerClass(args.domain,int(args.level))
-	webcrawler.start()
-	for i in range(0,len(webcrawler.urls)):
-		print("{0}\t{1}".format(i,webcrawler.urls[i]))
+		webcrawler = discoveryWebCrawlerClass(args.domain,int(args.level))
+		webcrawler.start()
+		for i in range(0,len(webcrawler.urls)):
+			print("{0}\t{1}".format(i,webcrawler.urls[i]))
+else:
+		user_domain=str(input("Domain Name; (EX: https://test.com):"))
+		user_level=int(input("Levels deep to crawl.(EX: 2):"))
+		if user_domain and user_level:
+			webcrawler = discoveryWebCrawlerClass(user_domain,user_level)
+			webcrawler.start()
+			for i in range(0,len(webcrawler.urls)):
+				print(webcrawler.urls[i])
